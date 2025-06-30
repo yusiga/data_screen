@@ -50,43 +50,47 @@ onMounted(() => {
 
 <style scoped>
 .scroll-container {
-    height: 20vh;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  height: 20vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .inner-wrap {
-    height: 100%;
-    width: 100%;
-    padding: 0 1vw 0 1vw;
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  height: 100%;
+  width: 100%;
+  padding: 0 1vw;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* 自定义内部样式，确保每行高度不被默认样式影响 */
+/* 表头和内容外层容器，使用flex确保居中 */
+::v-deep(.dv-scroll-board .header .header-item),
 ::v-deep(.dv-scroll-board .rows .row-item) {
-    height: 4vh !important;
-    line-height: 4vh !important;
-    font-size: 1.2vh;
-    padding: 0 !important;
-    text-align: center !important;
-    justify-content: center !important;
-    align-items: center !important;
-    display: flex !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  text-align: center !important;
+  height: 4vh !important;
+  line-height: 4vh !important;
+  font-size: 1.3vh;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
-::v-deep(.dv-scroll-board .header .header-item) {
-    height: 4vh !important;
-    line-height: 4vh !important;
-    font-size: 1.4vh;
-    padding: 0 !important;
-    text-align: center !important;
-    justify-content: center !important;
-    align-items: center !important;
-    display: flex !important;
+/* 表头和内容内部div也要居中，否则内容会错位 */
+::v-deep(.dv-scroll-board .header .header-item div),
+::v-deep(.dv-scroll-board .rows .row-item div) {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 100% !important;
+  height: 100% !important;
+  text-align: center !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 </style>

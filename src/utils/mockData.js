@@ -22,60 +22,83 @@ export const entrances = [
 
 // 人口与出入信息
 export const population = {
-  total: 1200,
-  residents: 1000,
-  visitors: 200,
+  total: 1800,
+  residents: 1500,
+  visitors: 300,
   age: [
-    { name: '0-18岁', value: 150 },
-    { name: '19-35岁', value: 400 },
-    { name: '36-60岁', value: 350 },
-    { name: '60岁以上', value: 300 },
+    { name: '0-6岁', value: 80 },
+    { name: '7-18岁', value: 220 },
+    { name: '19-35岁', value: 520 },
+    { name: '36-50岁', value: 410 },
+    { name: '51-65岁', value: 320 },
+    { name: '66岁以上', value: 250 },
   ],
   household: [
-    { name: '本地', value: 800 },
-    { name: '外地', value: 400 },
+    { name: '本地', value: 1100 },
+    { name: '外地', value: 600 },
+    { name: '港澳台', value: 60 },
+    { name: '外籍', value: 40 },
   ],
-  annualMoveIn: [120, 150, 180, 200, 220, 250, 300], // 近7年入住
-  alarmEvents: [10, 12, 8, 15, 20, 18, 22], // 近7年报警
+  // 2024-2030年入住与报警
+  annualMoveIn: [210, 230, 250, 270, 260, 280, 300], // 2024-2030
+  alarmEvents: [18, 22, 19, 25, 21, 24, 20], // 2024-2030
 };
 
 export const vehicle = {
-  parkingRate: 0.75,
-  registered: 320,
-  flow: [30, 45, 60, 50, 40, 55, 70], // 近7天车流
+  parkingRate: 0.82,
+  registered: 410,
+  // 2025年6月30日开始连续14天车流
+  flow: [62, 58, 70, 65, 80, 75, 90, 85, 78, 88, 92, 95, 100, 98],
 };
 
 // 问题上报处理
 export const issues = {
   types: [
-    { name: '环境', value: 20 },
-    { name: '设施', value: 15 },
-    { name: '安防', value: 10 },
-    { name: '其他', value: 5 },
+    { name: '环境', value: 32 },
+    { name: '设施', value: 27 },
+    { name: '安防', value: 18 },
+    { name: '其他', value: 9 },
   ],
   progress: [
-    { name: '已处理', value: 35 },
-    { name: '处理中', value: 10 },
-    { name: '未处理', value: 5 },
+    { name: '已处理', value: 60 },
+    { name: '处理中', value: 18 },
+    { name: '未处理', value: 8 },
   ],
   list: [
     { id: 1, type: '环境', desc: '小区垃圾未及时清理', status: '已处理' },
     { id: 2, type: '设施', desc: '健身器材损坏', status: '处理中' },
     { id: 3, type: '安防', desc: '门禁异常', status: '未处理' },
+    { id: 4, type: '设施', desc: '电梯运行异常', status: '已处理' },
+    { id: 5, type: '环境', desc: '绿化带杂草丛生', status: '已处理' },
+    { id: 6, type: '安防', desc: '监控摄像头离线', status: '处理中' },
+    { id: 7, type: '设施', desc: '路灯损坏', status: '已处理' },
+    { id: 8, type: '环境', desc: '楼道异味', status: '处理中' },
+    { id: 9, type: '安防', desc: '陌生人尾随进门', status: '已处理' },
+    { id: 10, type: '其他', desc: '快递丢失', status: '未处理' },
   ],
 };
 
 // 安防监控
 export const security = {
   access: [
-    { time: '08:00', type: '进', person: '张三' },
-    { time: '08:30', type: '出', person: '李四' },
+    { time: '07:50', type: '进', person: '张三' },
+    { time: '08:00', type: '进', person: '李四' },
+    { time: '08:10', type: '出', person: '王五' },
+    { time: '08:30', type: '进', person: '赵六' },
+    { time: '09:00', type: '出', person: '钱七' },
+    { time: '09:20', type: '进', person: '孙八' },
+    { time: '09:40', type: '出', person: '周九' },
   ],
   visitors: [
     { name: '王五', time: '09:00', reason: '快递' },
+    { name: '李雷', time: '10:15', reason: '家政' },
+    { name: '韩梅梅', time: '11:30', reason: '亲友' },
+    { name: '小明', time: '13:00', reason: '外卖' },
   ],
   warnings: [
     { time: '10:00', event: '异常徘徊', level: '高' },
+    { time: '11:20', event: '门禁强行开启', level: '中' },
+    { time: '12:45', event: '可疑人员聚集', level: '高' },
   ],
 };
 

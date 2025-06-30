@@ -35,7 +35,7 @@ function initChart() {
     },
     xAxis: {
       type: 'category',
-      data: ['7年前','6年前','5年前','4年前','3年前','2年前','去年'],
+      data: ['2018','2019','2020','2021','2022','2023','2024'],
       axisLine: { lineStyle: { color: '#ccc' } },
       axisLabel: {
         color: '#fff',

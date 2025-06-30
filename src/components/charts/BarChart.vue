@@ -29,7 +29,9 @@ function initChart() {
     grid: { left: '5%', right: '5%', top: '24%', bottom: '12%', containLabel: true },
     xAxis: {
       type: 'category',
-      data: ['6天前','5天前','4天前','3天前','2天前','昨天','今天'],
+      data: [
+        '17','18','19','20','21','22','23','24','25','26','27','28','29','30'
+      ],
       axisLine: { lineStyle: { color: '#6fc3df' } },
       axisLabel: { color: '#fff', fontSize: '0.6vw', lineHeight: 10, interval: 0 }
     },

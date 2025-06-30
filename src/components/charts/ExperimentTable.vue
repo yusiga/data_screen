@@ -1,5 +1,5 @@
 <template>
-    <CardView title="实验情况">
+    <CardView title="问题上报与工单列表">
         <div class="scroll-container">
             <div class="inner-wrap">
                 <dv-scroll-board :config="config" style="width: 100%; height: 100%;" />
@@ -9,21 +9,16 @@
 </template>
 
 <script setup>
-import { ref, reactive, onMounted, watch, onUnmounted } from 'vue'
+import { reactive, onMounted } from 'vue'
 import CardView from '../CardView.vue'
-import { queryAllStua } from '../../utils/expSituation'
+import { issues } from '../../utils/mockData'
 
-// 响应式数据
-const data = ref([])
-let refreshTimer = null // 定时器引用
-
-// 表格配置
 const config = reactive({
-    header: ['房间号', '时间', '实验内容', '设备名称', '教员'],
+    header: ['编号', '类型', '描述', '状态'],
     data: [],
     index: false,
-    columnWidth: [50, 140, 160, 100, 80],
-    align: ['center', 'center', 'center', 'center', 'center'],
+    columnWidth: [40, 60, 180, 60],
+    align: ['center', 'center', 'left', 'center'],
     rowNum: 4,
     headerBGC: 'transparent',
     oddRowBGC: '#122B53',
@@ -33,65 +28,8 @@ const config = reactive({
     waitTime: 2000,
 })
 
-// 格式化时间为 "MM月DD日 HH:mm"
-const formatTime = (timestamp) => {
-    const date = new Date(timestamp)
-    const month = (date.getMonth() + 1).toString().padStart(2, '0')
-    const day = date.getDate().toString().padStart(2, '0')
-    const hours = date.getHours().toString().padStart(2, '0')
-    const minutes = date.getMinutes().toString().padStart(2, '0')
-    return `${month}月${day}日 ${hours}:${minutes}`
-}
-
-// 获取实验情况数据
-const fetchSitutation = async () => {
-    try {
-        const res = await queryAllStua()
-        const tableData = res.map(item => [
-            item.roomId.toString(),
-            // formatTime(item.time),
-            item.time,
-            item.expContent,
-            item.deviceName,
-            item.expTeacher
-        ])
-        data.value = res
-        config.data = tableData
-        console.log('实验情况数据刷新成功', new Date().toLocaleTimeString())
-    } catch (error) {
-        console.error('获取实验情况失败:', error)
-        config.data = [
-            ['--', '--', '数据加载失败', '--', '--']
-        ]
-    }
-}
-
-// 设置定时刷新
-const setupRefresh = () => {
-    // 先清除已有定时器
-    if (refreshTimer) {
-        clearInterval(refreshTimer)
-    }
-    // 每小时刷新一次 (3600000毫秒 = 1小时)
-    refreshTimer = setInterval(fetchSitutation, 3600000)
-    // 立即执行一次
-    fetchSitutation()
-}
-
-// 监听数据变化（如果需要）
-watch(data, (newVal) => {
-    console.log('数据已更新:', newVal)
-})
-
 onMounted(() => {
-    setupRefresh()
-})
-
-// 组件卸载时清除定时器
-onUnmounted(() => {
-    if (refreshTimer) {
-        clearInterval(refreshTimer)
-    }
+    config.data = issues.list.map(item => [item.id, item.type, item.desc, item.status])
 })
 </script>
 

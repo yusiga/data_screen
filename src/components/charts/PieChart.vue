@@ -97,12 +97,17 @@ function initCharts() {
       top: 0,
       textStyle: { color: '#fff', fontSize: 10 }
     },
-    grid: { left: '10%', right: '10%', top: '20%', bottom: '15%' },
+    grid: { left: '20%', right: '5%', top: '25%', bottom: '15%' },
     xAxis: {
       type: 'category',
       data: population.household.map(i => i.name),
       axisLine: { lineStyle: { color: '#fff' } },
-      axisLabel: { color: '#fff', fontSize: 10 }
+      axisLabel: { 
+        color: '#fff', 
+        fontSize: 10,
+        interval: 0,
+        rotate: 0
+      }
     },
     yAxis: {
       type: 'value',
@@ -130,7 +135,7 @@ function initCharts() {
           },
           borderRadius: [6, 6, 0, 0]
           },
-        barWidth: '40%'
+        barWidth: '50%'
           }
     ]
   };
@@ -159,7 +164,7 @@ onMounted(() => {
   height: 16vh;
 }
 .bar-chart {
-  width: 8vw;
+  width: 10vw;
   height: 16vh;
 }
 </style>

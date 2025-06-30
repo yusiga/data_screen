@@ -21,7 +21,7 @@ function initChart() {
       data: ['车流量'],
       top: '0%',
       right: '0%',
-      textStyle: { color: '#fff', fontSize: '0.7vw' },
+      textStyle: { color: '#fff', fontSize: '0.6vw' },
       itemWidth: 18,
       itemHeight: 8,
       itemGap: 15
@@ -31,13 +31,13 @@ function initChart() {
       type: 'category',
       data: ['6天前','5天前','4天前','3天前','2天前','昨天','今天'],
       axisLine: { lineStyle: { color: '#6fc3df' } },
-      axisLabel: { color: '#fff', fontSize: '0.7vw', lineHeight: 10, interval: 0 }
+      axisLabel: { color: '#fff', fontSize: '0.6vw', lineHeight: 10, interval: 0 }
     },
     yAxis: {
       type: 'value',
       min: 0,
       axisLine: { lineStyle: { color: '#6fc3df' } },
-      axisLabel: { color: '#fff', fontSize: '0.7vw' },
+      axisLabel: { color: '#fff', fontSize: '0.6vw' },
       splitLine: { lineStyle: { color: 'rgba(255,255,255,0.05)' } }
     },
     series: [

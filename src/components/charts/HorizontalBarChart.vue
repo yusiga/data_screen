@@ -26,41 +26,34 @@ const chartRef = ref(null)
 let chartInstance = null
 
 function initChart() {
-  const colorList = [
-    '#005bea', // 深蓝
-    '#00eaff', // 亮蓝
-    '#1ad1ff', // 青蓝
-    '#6f7bfd', // 紫蓝
-    '#3a8dde', // 浅蓝
-    '#7ed6fb'  // 浅青蓝
-  ];
   const option = {
     grid: { left: '18%', right: '10%', top: '10%', bottom: '10%' },
     xAxis: {
       type: 'value',
-      axisLine: { lineStyle: { color: '#6fc3df' } },
+      axisLine: { lineStyle: { color: '#fff' } },
       axisLabel: { color: '#fff', fontSize: 10 },
       splitLine: { lineStyle: { color: 'rgba(255,255,255,0.1)' } }
     },
     yAxis: {
       type: 'category',
       data: satisfaction.map(i => i.name),
-      axisLine: { lineStyle: { color: '#6fc3df' } },
+      axisLine: { lineStyle: { color: '#fff' } },
       axisLabel: { color: '#fff', fontSize: 10 }
     },
     series: [
       {
         name: '满意度',
         type: 'bar',
-        data: satisfaction.map((i, idx) => ({ value: i.value, itemStyle: { color: colorList[idx % colorList.length] } })),
+        data: satisfaction.map(i => ({ value: i.value })),
         barWidth: 12,
         itemStyle: {
+          color: '#03EBF6',
           borderRadius: 0
         },
         label: {
           show: true,
           position: 'outside',
-          color: '#00eaff',
+          color: '#fff',
           fontSize: 12,
           fontWeight: 'bold',
           align: 'right',
@@ -72,6 +65,9 @@ function initChart() {
     tooltip: {
       trigger: 'axis',
       axisPointer: { type: 'shadow' },
+      backgroundColor: '#222',
+      borderColor: '#03EBF6',
+      textStyle: { color: '#fff' },
       formatter: params => {
         const p = params[0]
         return `${p.name}：${p.value}%`

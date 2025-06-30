@@ -82,6 +82,10 @@ function initMap() {
   if (map.showBuildings3D) {
     map.showBuildings3D(true);
   }
+  // 每隔1秒地图平滑向右平移20像素
+  setInterval(() => {
+    map.panBy(20, 0);
+  }, 1000);
 }
 </script>
 

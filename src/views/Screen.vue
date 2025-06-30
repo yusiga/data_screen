@@ -73,7 +73,7 @@ const defaultBg = new URL('../assets/bg.png', import.meta.url).href
     width: 100%;
     height: 100vh;
     color: #fff;
-    padding: 2vw;
+    padding: 2vw 2vw 2vw 1vw;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -154,8 +154,7 @@ const defaultBg = new URL('../assets/bg.png', import.meta.url).href
     flex: 1;
     width: 100%;
     min-height: 0;
-    gap: 2vw;
-    height: 60vh;
+    gap: 1vw;
 }
 .left {
     width: 24vw;
@@ -173,12 +172,14 @@ const defaultBg = new URL('../assets/bg.png', import.meta.url).href
     align-items: center;
     justify-content: center;
     min-width: 0;
+    margin-left: 2vw;
+    margin-right: 1vw;
 }
 .right {
     width: 24vw;
     display: flex;
     flex-direction: column;
-    gap: 2vh;
+    gap: 2.5vh;
 }
 .footer {
     display: flex;
@@ -186,7 +187,7 @@ const defaultBg = new URL('../assets/bg.png', import.meta.url).href
     margin-top: 1vh;
     height: 24vh;
     flex-shrink: 0;
-    gap: 2vw;
+    gap: 1vw;
 }
 .footer-spacer {
     width: 24vw;
@@ -195,10 +196,11 @@ const defaultBg = new URL('../assets/bg.png', import.meta.url).href
 .footer-video {
     flex: 1;
     display: flex;
+    margin-left: 2vw;
     align-items: flex-start;
 }
 .footer-bar {
-    width: 22vw;
+    width: 24vw;
     display: flex;
     align-items: flex-start;
 }

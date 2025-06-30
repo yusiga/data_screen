@@ -49,7 +49,7 @@ function initChart() {
           show: true,
           position: 'right',
           color: '#fff',
-          fontSize: 8
+
         }
       }
     ],

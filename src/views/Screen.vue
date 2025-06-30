@@ -1,67 +1,65 @@
 <template>
-    <div class="dashboard" :style="{ backgroundImage: `url(${defaultBg})` }">
-        <!-- 顶部 LOGO + 标题 -->
-        <div class="header">
-            <div class="title">
-                <img class="logo" :src="logoUrl" alt="社区LOGO" />
-                <div class="title">高新智慧社区物业端</div>
-            </div>
-            <div class="introduction">
-                <div class="intro-left">
-                    <div class="intro-bar"></div>
-                    <div class="intro-text">社区简介</div>
-                </div>
-                <div class="intro-center">
-                    欢迎来到高新智慧社区管理端数据大屏，实时掌握社区人口、车辆、安防、问题上报等核心数据，助力社区智能化管理。
-                </div>
-                <div class="intro-right">
-                    <img :src="logoUrl" alt="展示图" />
-                </div>
-            </div>
+  <div class="dashboard" :style="{ backgroundImage: `url(${defaultBg})` }">
+    <!-- 顶部 LOGO + 标题 -->
+    <div class="header">
+      <div class="title">
+        <img class="logo" :src="logoUrl" alt="社区LOGO" />
+        <div class="title">高新智慧社区物业端</div>
+      </div>
+      <div class="introduction">
+        <div class="intro-left">
+          <div class="intro-bar"></div>
+          <div class="intro-text">社区简介</div>
         </div>
-
-        <!-- 主体区域：左侧3图表+中部地图+右侧2表格 -->
-        <div class="main">
-            <!-- 左侧模块：3图表竖直均分 -->
-            <div class="left">
-                <div class="left-chart"><LineChart /></div>
-                <div class="left-chart"><PieChart /></div>
-                <div class="left-chart"><BarChart /></div>
-            </div>
-            <!-- 中间地图 -->
-            <div class="center">
-                <CenterView />
-            </div>
-            <!-- 右侧模块：2表格竖直排列 -->
-            <div class="right">
-                <ExperimentTable />
-                <UserTable />
-            </div>
+        <div class="intro-center">
+          欢迎来到高新智慧社区管理端数据大屏，实时掌握社区人口、车辆、安防、问题上报等核心数据，助力社区智能化管理。
         </div>
-
-        <!-- 地图下方横跨中部和右侧的底部区域：重点区域实时画面+横向柱状图 -->
-        <div class="footer">
-            <div class="footer-spacer"></div>
-            <div class="footer-video"><VideoCard /></div>
-            <div class="footer-bar"><HorizontalBarChart /></div>
+        <div class="intro-right">
+          <img :src="logoUrl" alt="展示图" />
         </div>
+      </div>
     </div>
+
+    <!-- 主体区域：左中右 -->
+    <div class="main">
+      <div class="left">
+        <div class="left-chart"><LineChart /></div>
+        <div class="left-chart"><PieChart /></div>
+        <div class="left-chart"><BarChart /></div>
+      </div>
+
+      <div class="center">
+        <CenterView />
+      </div>
+
+      <div class="right">
+        <div class="right-chart"><ExperimentTable /></div>
+        <div class="right-chart"><UserTable /></div>
+        <div class="right-chart"><HorizontalBarChart /></div>
+      </div>
+    </div>
+
+    <!-- 地图下方的重点区域实时画面 -->
+    <div class="center-footer">
+      <VideoCard />
+    </div>
+  </div>
 </template>
 
 <script setup>
-import LineChart from '../components/charts/LineChart.vue'
-import PieChart from '../components/charts/PieChart.vue'
-import BarChart from '../components/charts/BarChart.vue'
-import ExperimentTable from '../components/charts/ExperimentTable.vue'
-import UserTable from '../components/charts/UserTable.vue'
-import VideoCard from '../components/charts/VideoCard.vue'
-import CenterView from '../components/charts/CenterView.vue'
-import HorizontalBarChart from '../components/charts/HorizontalBarChart.vue'
-import { ref } from 'vue'
-import logoImage from '../assets/logo.jpeg'
+import LineChart from "../components/charts/LineChart.vue";
+import PieChart from "../components/charts/PieChart.vue";
+import BarChart from "../components/charts/BarChart.vue";
+import ExperimentTable from "../components/charts/ExperimentTable.vue";
+import UserTable from "../components/charts/UserTable.vue";
+import VideoCard from "../components/charts/VideoCard.vue";
+import CenterView from "../components/charts/CenterView.vue";
+import HorizontalBarChart from "../components/charts/HorizontalBarChart.vue";
+import { ref } from "vue";
+import logoImage from "../assets/logo.jpeg";
 
-const logoUrl = ref(logoImage)
-const defaultBg = new URL('../assets/bg.png', import.meta.url).href
+const logoUrl = ref(logoImage);
+const defaultBg = new URL("../assets/bg.png", import.meta.url).href;
 </script>
 
 <style scoped>
@@ -77,7 +75,7 @@ const defaultBg = new URL('../assets/bg.png', import.meta.url).href
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
-  font-family: 'Microsoft YaHei', sans-serif;
+  font-family: "Microsoft YaHei", sans-serif;
 }
 
 .header {
@@ -120,7 +118,7 @@ const defaultBg = new URL('../assets/bg.png', import.meta.url).href
 .intro-left {
   width: 2.5vh;
   height: 12vh;
-  background: linear-gradient(to bottom, #2C5B8E, #1F4A73, #15395C);
+  background: linear-gradient(to bottom, #2c5b8e, #1f4a73, #15395c);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -133,13 +131,13 @@ const defaultBg = new URL('../assets/bg.png', import.meta.url).href
 .intro-bar {
   width: 40%;
   height: 0.2vh;
-  background-color: #03EBF6;
+  background-color: #03ebf6;
   margin-bottom: 1vh;
   margin-top: 0.7vh;
 }
 
 .intro-text {
-  color: #03EBF6;
+  color: #03ebf6;
   font-size: 1vw;
   font-weight: 600;
   margin-top: 1vh;
@@ -197,41 +195,28 @@ const defaultBg = new URL('../assets/bg.png', import.meta.url).href
   margin-right: 2vw;
   gap: 2vh;
 }
-.right > * {
+.right-chart {
   flex: 1;
-  padding: 1vh;
 }
 
-/* 底部区域 */
-.footer {
+/* 地图下方的重点区域实时画面 */
+.center-footer {
+  height: 25vh;
+  margin-top: 2vh;
+  padding: 1vh;
+
+  /* 对齐 center 区域 */
+  width: calc(100% - 24vw - 24vw - 4vw); /* 总宽 - 左 - 右 - 两侧 margin */
+  margin-left: calc(24vw + 2vw); /* 左边距 + center 左 margin */
+  box-sizing: border-box;
+
   display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.center-footer > * {
   width: 100%;
-  margin-top: 4vh;
-  height: 26vh;
-  flex-shrink: 0;
-  gap: 1vw;
-}
-
-.footer-spacer {
-  width: 24vw;
-  flex-shrink: 0;
-}
-
-.footer-video,
-.footer-bar {
-  display: flex;
-  padding: 1vh;
   height: 100%;
-}
-
-.footer-video {
-  flex: 1;
-  margin-left: 2vw;
-  margin-right: 1vw;
-}
-
-.footer-bar {
-  width: 25vw;
-  margin-right: 2vw;
+  border-radius: 0.5vw;
 }
 </style>

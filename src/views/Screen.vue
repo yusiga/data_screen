@@ -231,6 +231,7 @@ const defaultBg = new URL('../assets/bg.png', import.meta.url).href
 }
 
 .footer-bar {
-  width: 24vw;
+  width: 25vw;
+  margin-right: 2vw;
 }
 </style>

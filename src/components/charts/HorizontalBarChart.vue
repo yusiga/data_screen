@@ -49,7 +49,7 @@ function initChart() {
           show: true,
           position: 'right',
           color: '#fff',
-          fontSize: 14
+          fontSize: 8
         }
       }
     ],
@@ -76,6 +76,6 @@ onMounted(() => {
 <style scoped>
 .horizontal-bar-chart {
   width: 100%;
-  height: 16vh;
+  height: 18vh;
 }
 </style> 

@@ -1,5 +1,5 @@
 <template>
-    <CardView title="年度入住与报警趋势分析">
+    <CardView title="年度入住与报警趋势">
         <div ref="chartRef" class="chart-container"></div>
     </CardView>
 </template>
@@ -23,7 +23,7 @@ function initChart() {
       icon: 'line',
       textStyle: {
         color: '#fff',
-        fontSize: '0.8vw'
+        fontSize: '0.7vw'
       }
     },
     grid: {
@@ -40,27 +40,30 @@ function initChart() {
       axisLabel: {
         color: '#fff',
         interval: 0,
-        fontSize: '0.8vw'
+        fontSize: '0.7vw'
       }
     },
     yAxis: {
       type: 'value',
       min: 0,
       axisLine: { lineStyle: { color: '#ccc' } },
-      axisLabel: { color: '#fff', formatter: '{value}', fontSize: '0.8vw' },
+      axisLabel: { color: '#fff', formatter: '{value}', fontSize: '0.7vw' },
       splitLine: { lineStyle: { color: 'rgba(255,255,255,0.1)' } }
     },
     series: [
       {
         name: '年度入住',
         data: population.annualMoveIn,
-      type: 'line',
+        type: 'line',
         smooth: true,
         lineStyle: { width: 2, color: '#03EBF6' },
         symbol: 'circle',
         symbolSize: 4,
         itemStyle: { color: '#03EBF6', borderColor: '#fff', borderWidth: 1 },
-        animationDelay: idx => idx * 100
+        animationDelay: idx => idx * 100,
+        areaStyle: {
+          color: 'rgba(3,235,246,0.18)'
+        }
       },
       {
         name: '报警事件',
@@ -68,10 +71,13 @@ function initChart() {
         type: 'line',
         smooth: true,
         lineStyle: { width: 2, color: '#FF6B6B' },
-      symbol: 'circle',
-      symbolSize: 4,
+        symbol: 'circle',
+        symbolSize: 4,
         itemStyle: { color: '#FF6B6B', borderColor: '#fff', borderWidth: 1 },
-        animationDelay: idx => idx * 100
+        animationDelay: idx => idx * 100,
+        areaStyle: {
+          color: 'rgba(255,107,107,0.18)'
+        }
       }
     ],
     tooltip: {

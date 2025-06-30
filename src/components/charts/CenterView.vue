@@ -55,57 +55,33 @@ onMounted(() => {
 })
 
 function initMap() {
-  // 设置一个社区中心点（可自定义）
-  const center = [116.397428, 39.90923] // 北京天安门
+  // 设置一个社区中心点（合肥高新）
+  const center = [117.302627, 31.740745]
   const map = new window.AMap.Map('amap-container', {
     center,
     zoom: 17,
-    viewMode: '3D'
+    viewMode: '3D',
+    mapStyle: 'amap://styles/grey',
+    pitch: 45,
+    showBuildingBlock: true,
+    buildingAnimation: true,
+    labels: false
   })
-  // 楼栋 marker
-  buildings.forEach(b => {
-    const marker = new window.AMap.Marker({
-      position: [center[0] + 0.001 * b.id, center[1] + 0.001 * b.id],
-      title: b.name,
-      icon: 'https://webapi.amap.com/theme/v1.3/markers/n/mark_b.png',
-      offset: new window.AMap.Pixel(-13, -30)
-    })
-    marker.on('click', () => showInfo('building', b, marker.getPosition()))
-    map.add(marker)
-  })
-  // 车位 marker
-  parkings.forEach(p => {
-    const marker = new window.AMap.Marker({
-      position: [center[0] - 0.001 * p.id, center[1] - 0.001 * p.id],
-      title: p.name,
-      icon: 'https://webapi.amap.com/theme/v1.3/markers/n/mark_p.png',
-      offset: new window.AMap.Pixel(-13, -30)
-    })
-    marker.on('click', () => showInfo('parking', p, marker.getPosition()))
-    map.add(marker)
-  })
-  // 摄像头 marker
-  cameras.forEach(c => {
-    const marker = new window.AMap.Marker({
-      position: [center[0] + 0.001 * c.id, center[1] - 0.001 * c.id],
-      title: c.name,
-      icon: 'https://webapi.amap.com/theme/v1.3/markers/n/mark_r.png',
-      offset: new window.AMap.Pixel(-13, -30)
-    })
-    marker.on('click', () => showInfo('camera', c, marker.getPosition()))
-    map.add(marker)
-  })
-  // 出入口 marker
-  entrances.forEach(e => {
-    const marker = new window.AMap.Marker({
-      position: [center[0] - 0.001 * e.id, center[1] + 0.001 * e.id],
-      title: e.name,
-      icon: 'https://webapi.amap.com/theme/v1.3/markers/n/mark_g.png',
-      offset: new window.AMap.Pixel(-13, -30)
-    })
-    marker.on('click', () => showInfo('entrance', e, marker.getPosition()))
-    map.add(marker)
-  })
+  // 不添加任何marker、发光圈等，仅保留纯净地图和3D楼块
+  // 添加3D楼块高亮图层
+  const buildingsLayer = new window.AMap.Buildings({
+    zIndex: 10,
+    heightFactor: 1,
+    visible: true,
+    color1: '#00eaff', // 顶部颜色
+    color2: '#233a5b', // 立面颜色
+    color3: '#233a5b'  // 侧面颜色
+  });
+  map.add(buildingsLayer);
+  // 显示3D楼块
+  if (map.showBuildings3D) {
+    map.showBuildings3D(true);
+  }
 }
 </script>
 
@@ -115,7 +91,7 @@ function initMap() {
   width: 100%;
   height: 100%;
   min-height: 400px;
-  background: #f0f4fa;
+  background: #101c2a;
   border-radius: 12px;
   overflow: hidden;
 }

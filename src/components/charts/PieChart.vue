@@ -25,32 +25,64 @@ function initCharts() {
   pieChart = echarts.init(pieChartRef.value);
   barChart = echarts.init(barChartRef.value);
 
-  // 年龄分布饼图
+  // 计算当前高亮项（无高亮则为第一个）
+  let currentIndex = 0;
+  pieChart && pieChart.on && pieChart.on('highlight', function(params) {
+    currentIndex = params.batch ? params.batch[0].dataIndex : params.dataIndex;
+  });
+
+  // 年龄分布环形图（扁平大屏风格）
   const pieOption = {
-      title: {
+    title: {
       text: '年龄分布',
       left: 'center',
       top: 0,
-      textStyle: { color: '#fff', fontSize: 14 }
+      textStyle: { color: '#fff', fontSize: 10 }
     },
     tooltip: { trigger: 'item' },
-    legend: {
-      bottom: 0,
-        left: 'center',
-      textStyle: { color: '#fff', fontSize: 12 }
-    },
+    legend: { show: false },
     series: [
       {
         name: '年龄分布',
-      type: 'pie',
-        radius: ['50%', '75%'],
+        type: 'pie',
+        radius: ['65%', '80%'],
+        center: ['50%', '50%'],
+        avoidLabelOverlap: false,
         data: population.age,
-        label: { color: '#fff', fontSize: 12 },
-        labelLine: { show: true },
+        label: {
+          show: true,
+          position: 'center',
+          formatter: function(params) {
+            // 只有高亮项才显示高亮项，否则显示第一个
+            if (params.name && params.percent > 0) {
+              return `{a|${params.name}}\n{b|${params.value}}`;
+            } else {
+              const first = population.age[0];
+              return `{a|${first.name}}\n{b|${first.value}}`;
+            }
+          },
+          rich: {
+            a: { fontSize: 12, color: '#00eaff', fontWeight: 'bold', padding: [0,0,2,0] },
+            b: { fontSize: 16, color: '#fff', fontWeight: 'bold' }
+          }
+        },
+        labelLine: {
+          show: false
+        },
         itemStyle: {
-          borderRadius: 6,
-          borderColor: '#222',
-          borderWidth: 2
+          borderRadius: 0,
+          borderColor: '#233a5b',
+          borderWidth: 6,
+          color: function(params) {
+            // 扁平蓝色系
+            const colorList = [
+              '#00eaff', '#007bff', '#1ad1ff', '#005bea'
+            ];
+            return colorList[params.dataIndex % colorList.length];
+          }
+        },
+        emphasis: {
+          scale: true
         }
       }
     ]
@@ -63,20 +95,20 @@ function initCharts() {
       text: '户籍分布',
       left: 'center',
       top: 0,
-      textStyle: { color: '#fff', fontSize: 14 }
+      textStyle: { color: '#fff', fontSize: 10 }
     },
     grid: { left: '10%', right: '10%', top: '20%', bottom: '15%' },
     xAxis: {
       type: 'category',
       data: population.household.map(i => i.name),
       axisLine: { lineStyle: { color: '#fff' } },
-      axisLabel: { color: '#fff', fontSize: 12 }
+      axisLabel: { color: '#fff', fontSize: 10 }
     },
     yAxis: {
       type: 'value',
       min: 0,
       axisLine: { lineStyle: { color: '#fff' } },
-      axisLabel: { color: '#fff', fontSize: 12 },
+      axisLabel: { color: '#fff', fontSize: 10 },
       splitLine: { lineStyle: { color: 'rgba(255,255,255,0.1)' } }
     },
     series: [
@@ -85,7 +117,17 @@ function initCharts() {
       type: 'bar',
         data: population.household.map(i => i.value),
           itemStyle: {
-          color: '#03EBF6',
+          color: {
+            type: 'linear',
+            x: 0,
+            y: 0,
+            x2: 0,
+            y2: 1,
+            colorStops: [
+              { offset: 0, color: '#03EBF6' },
+              { offset: 1, color: '#005bea' }
+            ]
+          },
           borderRadius: [6, 6, 0, 0]
           },
         barWidth: '40%'

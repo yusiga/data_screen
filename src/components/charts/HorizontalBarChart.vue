@@ -1,5 +1,5 @@
 <template>
-  <CardView title="各楼栋人口数对比">
+  <CardView title="小区满意度">
     <div ref="chartRef" class="horizontal-bar-chart"></div>
   </CardView>
 </template>
@@ -10,46 +10,62 @@ import * as echarts from 'echarts'
 import CardView from '../CardView.vue'
 import { buildings } from '../../utils/mockData'
 
-// 假设每栋楼人口数随机生成或写死
-const buildingPop = [
-  { name: '1号楼', value: 420 },
-  { name: '2号楼', value: 350 },
-  { name: '3号楼', value: 230 }
+// 假设每项满意度数据
+const satisfaction = [
+  { name: '环境卫生', value: 92 },
+  { name: '安保服务', value: 88 },
+  { name: '设施维护', value: 85 },
+  { name: '停车管理', value: 80 },
+  { name: '物业响应', value: 78 },
+  { name: '社区活动', value: 75 },
+  { name: '绿化景观', value: 90 },
+  { name: '邻里关系', value: 83 }
 ]
 
 const chartRef = ref(null)
 let chartInstance = null
 
 function initChart() {
+  const colorList = [
+    '#005bea', // 深蓝
+    '#00eaff', // 亮蓝
+    '#1ad1ff', // 青蓝
+    '#6f7bfd', // 紫蓝
+    '#3a8dde', // 浅蓝
+    '#7ed6fb'  // 浅青蓝
+  ];
   const option = {
-    grid: { left: '10%', right: '10%', top: '10%', bottom: '10%' },
+    grid: { left: '18%', right: '10%', top: '10%', bottom: '10%' },
     xAxis: {
       type: 'value',
       axisLine: { lineStyle: { color: '#6fc3df' } },
-      axisLabel: { color: '#fff', fontSize: 12 },
+      axisLabel: { color: '#fff', fontSize: 10 },
       splitLine: { lineStyle: { color: 'rgba(255,255,255,0.1)' } }
     },
     yAxis: {
       type: 'category',
-      data: buildingPop.map(i => i.name),
+      data: satisfaction.map(i => i.name),
       axisLine: { lineStyle: { color: '#6fc3df' } },
-      axisLabel: { color: '#fff', fontSize: 14 }
+      axisLabel: { color: '#fff', fontSize: 10 }
     },
     series: [
       {
-        name: '人口数',
+        name: '满意度',
         type: 'bar',
-        data: buildingPop.map(i => i.value),
-        barWidth: 18,
+        data: satisfaction.map((i, idx) => ({ value: i.value, itemStyle: { color: colorList[idx % colorList.length] } })),
+        barWidth: 12,
         itemStyle: {
-          color: '#03EBF6',
-          borderRadius: [0, 8, 8, 0]
+          borderRadius: 0
         },
         label: {
           show: true,
-          position: 'right',
-          color: '#fff',
-
+          position: 'outside',
+          color: '#00eaff',
+          fontSize: 12,
+          fontWeight: 'bold',
+          align: 'right',
+          padding: [0, 12, 0, 0],
+          formatter: '{c}%'
         }
       }
     ],
@@ -58,7 +74,7 @@ function initChart() {
       axisPointer: { type: 'shadow' },
       formatter: params => {
         const p = params[0]
-        return `${p.name}：${p.value}人`
+        return `${p.name}：${p.value}%`
       }
     }
   }

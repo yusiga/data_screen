@@ -83,4 +83,10 @@ export const security = {
 export const videos = [
   { id: 1, name: '大门口', url: '/src/assets/video/video1.mp4' },
   { id: 2, name: '停车场', url: '/src/assets/video/video1.mp4' },
+  { id: 3, name: '单元门', url: '/src/assets/video/video1.mp4' },
+  { id: 4, name: '电梯口', url: '/src/assets/video/video1.mp4' },
+  { id: 5, name: '小区花园', url: '/src/assets/video/video1.mp4' },
+  { id: 6, name: '地下车库', url: '/src/assets/video/video1.mp4' },
+  { id: 7, name: '健身区', url: '/src/assets/video/video1.mp4' },
+  { id: 8, name: '儿童乐园', url: '/src/assets/video/video1.mp4' },
 ]; 

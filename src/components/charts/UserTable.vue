@@ -28,12 +28,23 @@ const config = reactive({
     waitTime: 2000,
 })
 
+let timer = null
+let allData = []
+let currentIndex = 0
+
 onMounted(() => {
-    config.data = [
+    allData = [
         ...security.access.map(item => ['门禁', item.time, `${item.type}：${item.person}`]),
         ...security.visitors.map(item => ['访客', item.time, `${item.name}（${item.reason}）`]),
         ...security.warnings.map(item => ['预警', item.time, item.event + '（' + item.level + '）'])
     ]
+    config.data = []
+    timer = setInterval(() => {
+        if (currentIndex >= allData.length) currentIndex = 0
+        config.data.push(allData[currentIndex])
+        if (config.data.length > 10) config.data.shift() // 最多显示10条
+        currentIndex++
+    }, 1000)
 })
 </script>
 
@@ -41,6 +52,9 @@ onMounted(() => {
 .scroll-container {
     height: 20vh;
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .inner-wrap {
@@ -48,20 +62,31 @@ onMounted(() => {
     width: 100%;
     padding: 0 1vw 0 1vw;
     box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* 自定义内部样式，确保每行高度不被默认样式影响 */
 ::v-deep(.dv-scroll-board .rows .row-item) {
     height: 4vh !important;
     line-height: 4vh !important;
-    font-size: 1vh;
+    font-size: 1.2vh;
     padding: 0 !important;
+    text-align: center !important;
+    justify-content: center !important;
+    align-items: center !important;
+    display: flex !important;
 }
 
 ::v-deep(.dv-scroll-board .header .header-item) {
     height: 4vh !important;
     line-height: 4vh !important;
-    font-size: 1.2vh;
+    font-size: 1.4vh;
     padding: 0 !important;
+    text-align: center !important;
+    justify-content: center !important;
+    align-items: center !important;
+    display: flex !important;
 }
 </style>

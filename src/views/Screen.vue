@@ -138,9 +138,9 @@ const defaultBg = new URL("../assets/bg.png", import.meta.url).href;
 
 .intro-text {
   color: #03ebf6;
-  font-size: 1vw;
+  font-size: 1.5vh;
   font-weight: 600;
-  margin-top: 1vh;
+  margin-left: 0.25vw;
 }
 
 .intro-center {

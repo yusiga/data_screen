@@ -18,7 +18,6 @@ const config = reactive({
   header: ['编号', '类型', '描述', '状态'],
   data: [],
   index: false,
-  columnWidth: [40, 60, 180, 60],
   align: ['center', 'center', 'center', 'center'],
   rowNum: 4,
   headerBGC: 'transparent',

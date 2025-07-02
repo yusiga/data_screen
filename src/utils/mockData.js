@@ -65,7 +65,7 @@ export const issues = {
     { name: '未处理', value: 8 },
   ],
   list: [
-    { id: 1, type: '环境', desc: '小区垃圾未及时清理', status: '已处理' },
+    { id: 1, type: '环境', desc: '垃圾未及时清理', status: '已处理' },
     { id: 2, type: '设施', desc: '健身器材损坏', status: '处理中' },
     { id: 3, type: '安防', desc: '门禁异常', status: '未处理' },
     { id: 4, type: '设施', desc: '电梯运行异常', status: '已处理' },

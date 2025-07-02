@@ -17,7 +17,6 @@ const config = reactive({
     header: ['类型', '时间', '内容'],
     data: [],
     index: false,
-    columnWidth: [60, 80, 180],
     align: ['center', 'center', 'left'],
     rowNum: 4,
     headerBGC: 'transparent',

@@ -45,16 +45,25 @@ function initChart() {
         name: '满意度',
         type: 'bar',
         data: satisfaction.map(i => ({ value: i.value })),
-        barWidth: 12,
+        barWidth: 10,
         itemStyle: {
-          color: '#03EBF6',
-          borderRadius: 0
+          color: {
+            type: 'linear',
+            x: 0,
+            y: 0,
+            x2: 1,
+            y2: 0,
+            colorStops: [
+              { offset: 0, color: '#3ae7ff' },
+              { offset: 1, color: '#409eff' }
+            ]
+          }
         },
         label: {
           show: true,
           position: 'outside',
           color: '#fff',
-          fontSize: 12,
+          fontSize: 11,
           fontWeight: 'bold',
           align: 'right',
           padding: [0, 12, 0, 0],

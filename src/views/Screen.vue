@@ -4,7 +4,7 @@
     <div class="header">
       <div class="title">
         <img class="logo" :src="logoUrl" alt="社区LOGO" />
-        <div class="title">高新智慧社区物业端</div>
+        <div class="title">高新智慧社区</div>
       </div>
       <div class="introduction">
         <div class="intro-left">
@@ -12,7 +12,9 @@
           <div class="intro-text">社区简介</div>
         </div>
         <div class="intro-center">
-          欢迎来到高新智慧社区管理端数据大屏，实时掌握社区人口、车辆、安防、问题上报等核心数据，助力社区智能化管理。
+          高新智慧社区融合大数据、物联网、人工智能等前沿技术，全面打造智能安防、便民服务、绿色生态、智慧治理于一体的现代化社区，推动城市管理数字化转型。
+          社区实现人口、车辆、安防、环境等多维度的智能化管理，提升治理效能，优化居民生活体验，助力社区实现高效、精准、智能的服务模式。
+          以智慧赋能社区治理，推动服务创新，营造安全、和谐、宜居、可持续发展的幸福家园，让每一位居民都能享受科技带来的美好生活。
         </div>
         <div class="intro-right">
           <img :src="logoUrl" alt="展示图" />
@@ -82,6 +84,7 @@ const defaultBg = new URL("../assets/bg.png", import.meta.url).href;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 2vw;
   margin-bottom: 1vh;
   flex-shrink: 0;
   max-height: 14vh;
@@ -101,6 +104,8 @@ const defaultBg = new URL("../assets/bg.png", import.meta.url).href;
   font-size: 1.8vw;
   font-weight: bold;
   color: #00f7ff;
+  flex-shrink: 0;
+  max-width: none;
 }
 
 .introduction {
@@ -148,6 +153,7 @@ const defaultBg = new URL("../assets/bg.png", import.meta.url).href;
   text-align: center;
   font-size: 1.05vw;
   color: #f0f0f0;
+  margin-left: 2vw;
 }
 
 .intro-right img {
